@@ -36,6 +36,7 @@ using System;
 using System.Diagnostics;
 using System.Net;
 using System.Runtime.InteropServices;
+using WinDivertSharp.Extensions;
 
 namespace WinDivertSharp
 {
@@ -58,6 +59,12 @@ namespace WinDivertSharp
         /// Gets or sets the header length.
         /// </summary>
         public ushort Length;
+
+        public ushort LengthHostOrder
+        {
+            get => Length.ntoh();
+            set => Length = value.hton();
+        }
 
         /// <summary>
         /// Gets or sets the ID.

@@ -32,7 +32,9 @@
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+using System.Net;
 using System.Runtime.InteropServices;
+using WinDivertSharp.Extensions;
 
 namespace WinDivertSharp
 {
@@ -47,10 +49,22 @@ namespace WinDivertSharp
         /// </summary>
         public ushort SrcPort;
 
+        public ushort SrcPortHostOrder
+        {
+            get => SrcPort.ntoh();
+            set => SrcPort = value.hton();
+        }
+
         /// <summary>
         /// Gets or sets the destination port.
         /// </summary>
         public ushort DstPort;
+
+        public ushort DstPortHostOrder
+        {
+            get => DstPort.ntoh();
+            set => DstPort = value.ntoh();
+        }
 
         /// <summary>
         /// Gets or sets the sequence number.
